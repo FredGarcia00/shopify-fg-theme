@@ -18,32 +18,34 @@
   {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 {% endif %}
 
-
- <div
+<div
   class="utility-bar color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator and section.blocks.size > 0 %} utility-bar--bottom-border{% elsif section.settings.show_line_separator and section.settings.show_social and social_icons%} utility-bar--bottom-border-social-only{% endif %}{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header-localization{% endif %}"
- 
-> 
+>
   <div class="page-width utility-bar__grid{% if announcement_bar and language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--3-col{% elsif language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--2-col{% endif %}">
     {%- if section.settings.show_social and social_icons -%}
       {%- render 'social-icons' -%}
     {%- endif -%}
     {%- if section.blocks.size == 1 -%}
-      <div class="announce-bar" 
-        style = "color:{{section.settings.body_text}}; background:{{section.settings.background_color}};"
-        role="region"
-        aria-label="{{ 'sections.header.announcement' | t }}">
-  
-      {% comment %} <div
-        class="announcement-bar{% if section.settings.show_social %} announcement-bar--one-announcement{% endif %}"
+      <div
+        class="announce-bar"
+        style="color:{{section.settings.body_text}}; background:{{section.settings.background_color}};"
         role="region"
         aria-label="{{ 'sections.header.announcement' | t }}"
-       
-      > {% endcomment %}
+      >
+        {% comment %}
+          <div
+            class="announcement-bar{% if section.settings.show_social %} announcement-bar--one-announcement{% endif %}"
+            role="region"
+            aria-label="{{ 'sections.header.announcement' | t }}"
+
+          >
+        {% endcomment %}
         {%- if section.blocks.first.settings.text != blank -%}
           {%- if section.blocks.first.settings.link != blank -%}
             <a
               href="{{ section.blocks.first.settings.link }}"
-              class="announcement-bar__link link link--text focus-inset animate-arrow"
+              class="announcement-bar__link link focus-inset animate-arrow"
+              style="color:{{section.settings.body_text}};"
             >
           {%- endif -%}
           <p class="announce-bar announcement-bar__message ">
@@ -60,7 +62,7 @@
     {%- elsif section.blocks.size > 1 -%}
       <slideshow-component
         class="announce-bar"
-        style = "color:{{section.settings.body_text}}; background:{{section.settings.background_color}};"
+        style="color:{{section.settings.body_text}}; background:{{section.settings.background_color}};"
         role="region"
         aria-roledescription="{{ 'sections.announcements.carousel' | t }}"
         aria-label="{{ 'sections.announcements.announcement_bar' | t }}"
@@ -69,6 +71,7 @@
           <button
             type="button"
             class="slider-button slider-button--prev"
+            style="color:{{section.settings.body_text}};"
             name="previous"
             aria-label="{{ 'sections.announcements.previous_announcement' | t }}"
             aria-controls="Slider-{{ section.id }}"
@@ -103,7 +106,8 @@
                     {%- if block.settings.link != blank -%}
                       <a
                         href="{{ block.settings.link }}"
-                        class="announcement-bar__link link link--text focus-inset animate-arrow"
+                        class="announcement-bar__link link focus-inset animate-arrow"
+                        style="color:{{section.settings.body_text}};"
                       >
                     {%- endif -%}
                     <p class="announcement-bar__message ">
@@ -123,6 +127,7 @@
           <button
             type="button"
             class="slider-button slider-button--next"
+            style="color:{{section.settings.body_text}};"
             name="next"
             aria-label="{{ 'sections.announcements.next_announcement' | t }}"
             aria-controls="Slider-{{ section.id }}"
@@ -187,7 +192,7 @@
       "id": "background_color",
       "label": "Background",
       "default": "linear-gradient(#605e7d, #605e7d)"
-    },    
+    },
     {
       "type": "checkbox",
       "id": "show_line_separator",
