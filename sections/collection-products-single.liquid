@@ -1,0 +1,340 @@
+<div class="collection collection1">
+  <div class="container">
+    <div class="row">
+      {% comment %} {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%} {% endcomment %}
+      {%- for product in section.settings.collection.products limit: section.settings.total_products -%}
+        <div class="{{ section.settings.xxl_col }} {{ section.settings.xl_col }} {{ section.settings.lg_col }} {{ section.settings.md_col }} {{ section.settings.sm_col }}">
+          <div class="collection1__collection-item">
+            <div
+              class=
+              " 
+              collection1__product-img collection1__product-img--{{ section.settings.container_shape}} 
+              collection1__product-img collection1__product-img--{{ section.settings.image_fit}}
+              "
+              style="background-color:{{section.settings.color_background |color_modify: 'alpha', section.settings.opacity}}"
+            >
+              <div class="collection1__heart"><i class="far fa-heart"></i></div>
+              <a href="{{ product.url }}">
+                <img
+                  srcset="
+                    {%- if product.featured_media.width >= 165 -%}{{ product.featured_media | image_url: width: 165 }} 165w,{%- endif -%}
+                    {%- if product.featured_media.width >= 360 -%}{{ product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+                    {%- if product.featured_media.width >= 533 -%}{{ product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+                    {%- if product.featured_media.width >= 720 -%}{{ product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+                    {%- if product.featured_media.width >= 940 -%}{{ product.featured_media | image_url: width: 940 }} 940w,{%- endif -%}
+                    {%- if product.featured_media.width >= 1066 -%}{{ product.featured_media | image_url: width: 1066 }} 1066w,{%- endif -%}
+                    {{ product.featured_media | image_url }} {{ product.featured_media.width }}w
+                  "
+                  src="{{ product.featured_media | image_url: width: 533 }}"
+                  sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                  alt="{{ product.featured_media.alt | escape }}"
+                  class="motion-reduce"
+
+                  width="{{ product.featured_media.width }}"
+                  height="{{ product.featured_media.height }}"
+                >
+              </a>
+            </div>
+            <div class="collection1__product-info">
+              <div class="collection1__product-details">
+                {% if section.settings.show_title == true %}
+                  <span class="collection1__product-title">{{ product.title }}</span>
+                {% endif %}
+                {% if section.settings.show_price == true %}
+                  <span class="collection1__product-price">${{ product.price }}</span>
+                {% endif %}
+              </div>
+              <div class="collection1__colors">
+                <div class="collection1__color collection1__color--blue"></div>
+                <div class="collection1__color collection1__color--black"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Products 1",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "hero_height",
+      "options": [
+        {
+          "value": "25vh",
+          "label": "25%"
+        },
+        {
+          "value": "50vh",
+          "label": "50%"
+        },
+        {
+          "value": "75vh",
+          "label": "75%"
+        },
+        {
+          "value": "100vh",
+          "label": "100%"
+        }
+      ],
+      "default": "100vh",
+      "label": "Height"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "color",
+      "id": "color_background",
+      "label": "Background",
+      "default": "#edeff5"
+    },
+    {
+      "type": "range",
+      "id": "opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "label": "Color Opacity",
+      "default": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "secondary image"
+    },
+    {
+      "type": "select",
+      "id": "container_shape",
+      "options": [
+        {
+          "value": "rectangle",
+          "label": "Rectangle"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "circle",
+          "label": "Circle"
+        }
+      ],
+      "default": "rectangle",
+      "label": "Product Container Shape"
+    },
+    {
+      "type": "select",
+      "id": "image_fit",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        }
+      ],
+      "default": "cover",
+      "label": "Product Image fit"
+    },
+    {
+      "type": "range",
+      "id": "total_products",
+      "min": 1,
+      "max": 16,
+      "step": 1,
+      "label": "Total Products",
+      "default": 16
+    },
+    
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show Title",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Show Price",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "xxl_col",
+      "default": "col-xxl-3",
+      "label": "XXL Devices",
+      "options": [
+        {
+          "value": "col-xxl-6",
+          "label": "2 Columns"
+        },
+        {
+          "value": "col-xxl-4",
+          "label": "3 Columns"
+        },
+        {
+          "value": "col-xxl-3",
+          "label": "4 Columns"
+        },
+        {
+          "value": "col-xxl-2",
+          "label": "6 Columns"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "xl_col",
+      "default": "col-xl-3",
+      "label": "XL Devices",
+      "options": [
+        {
+          "value": "col-xl-6",
+          "label": "2 Columns"
+        },
+        {
+          "value": "col-xl-4",
+          "label": "3 Columns"
+        },
+        {
+          "value": "col-xl-3",
+          "label": "4 Columns"
+        },
+        {
+          "value": "col-xl-2",
+          "label": "6 Columns"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "lg_col",
+      "default": "col-lg-3",
+      "label": "Large Devices",
+      "options": [
+        {
+          "value": "col-lg-6",
+          "label": "2 Columns"
+        },
+        {
+          "value": "col-lg-4",
+          "label": "3 Columns"
+        },
+        {
+          "value": "col-lg-3",
+          "label": "4 Columns"
+        },
+        {
+          "value": "col-lg-2",
+          "label": "6 Columns"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "md_col",
+      "default": "col-md-3",
+      "label": "Medium Devices",
+      "options": [
+        {
+          "value": "col-md-6",
+          "label": "2 Columns"
+        },
+        {
+          "value": "col-md-4",
+          "label": "3 Columns"
+        },
+        {
+          "value": "col-md-3",
+          "label": "4 Columns"
+        },
+        {
+          "value": "col-md-2",
+          "label": "6 Columns"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "sm_col",
+      "default": "col-sm-6",
+      "label": "Small Devices",
+      "options": [
+        {
+          "value": "col-sm-6",
+          "label": "2 Columns"
+        },
+        {
+          "value": "col-sm-4",
+          "label": "3 Columns"
+        },
+        {
+          "value": "col-sm-3",
+          "label": "4 Columns"
+        },
+        {
+          "value": "col-sm-2",
+          "label": "6 Columns"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "image_first",
+          "label": "t:sections.image-with-text.settings.layout.options__1.label"
+        },
+        {
+          "value": "text_first",
+          "label": "t:sections.image-with-text.settings.layout.options__2.label"
+        }
+      ],
+      "default": "image_first",
+      "label": "t:sections.image-with-text.settings.layout.label",
+      "info": "t:sections.image-with-text.settings.layout.info"
+    },
+
+    {
+      "type": "color_scheme",
+      "id": "section_color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.multirow.settings.container_color_scheme.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.animation.content"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Products 1"
+    }
+  ]
+}
+{% endschema %}
