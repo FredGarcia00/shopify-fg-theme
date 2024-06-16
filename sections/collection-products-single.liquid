@@ -1,3 +1,4 @@
+{% if section.settings.collection.all_products_count  %}
 <div class="collection collection1">
   <div class="container">
     <div class="row">
@@ -42,6 +43,14 @@
                 {% endif %}
                 {% if section.settings.show_price == true %}
                   <span class="collection1__product-price">${{ product.price }}</span>
+                  <div>
+                    {% for block in section.blocks %}
+                      {% case block.type %}
+                        {% when '@app' %}
+                          {% render block %}
+                      {% endcase %}
+                    {% endfor %}
+                  </div>
                 {% endif %}
               </div>
               <div class="collection1__colors">
@@ -55,7 +64,9 @@
     </div>
   </div>
 </div>
-
+{% else %}
+  {% comment %} <h1>Show Demo</h1> {% endcomment %}
+{% endif %}
 {% schema %}
 {
   "name": "Collection Products 1",
@@ -329,6 +340,11 @@
     {
       "type": "header",
       "content": "t:sections.all.padding.section_padding_heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
     }
   ],
   "presets": [

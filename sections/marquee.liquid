@@ -1,0 +1,47 @@
+
+<!-- Marquee -->
+<div class="hero__marquee" style="background-color: {{ section.settings.background_color }}">
+    <div class="hero__callout" style="color:{{ section.settings.text_color }}">
+        {% for i in (1..10) %}
+            <p>{{section.settings.sale_text}}</p>
+          {% endfor %}
+    </div>
+    <div class="hero__callout" style="color:{{ section.settings.text_color }}">
+        {% for i in (1..10) %}
+            <p>{{section.settings.sale_text}}</p>
+          {% endfor %}
+    </div>
+</div>
+
+{% schema %}
+{ 
+    "name": "Marquee",
+    "settings": [
+      {
+        "type": "text",
+        "id": "sale_text",
+        "label": "Sale text",
+        "default": "20% OFF SALE!"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Body text",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+         "default": "#000000",
+        "label": "Background Color"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Marquee"
+      }
+    ]
+  }
+  
+
+  {% endschema %}
