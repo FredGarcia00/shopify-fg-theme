@@ -51,6 +51,7 @@
       }}
     {%- else -%}
       {{ 'detailed-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% comment %} <img src="https://fgthemes.myshopify.com/cdn/shop/files/pink-neon-lights-fashion-model.jpg?v=1718491405&width=2000" alt="Fashion model"> {% endcomment %}
     {%- endif -%}
   </div>
   {% comment %} {% assign opacity = section.settings.opacity | divided_by: 100.00  %} --Joe's approach. Would assign opacity below {% endcomment %}
@@ -141,7 +142,7 @@
       "type": "image_picker",
       "id": "image",
       "label": "t:sections.image-with-text.settings.image.label",
-      "default": "https://cdn/shop/files/pink-neon-lights-fashion-model.jpg?v=1718491405&width=2000"
+      "default": "https://fgthemes.myshopify.com/cdn/shop/files/pink-neon-lights-fashion-model.jpg?v=1718491405&width=2000"
     },
     {
       "type": "color",
