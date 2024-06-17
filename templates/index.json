@@ -2,37 +2,9 @@
   "sections": {
     "hero_one_HWtFWW": {
       "type": "hero-one",
-      "blocks": {
-        "heading_P3F63C": {
-          "type": "heading",
-          "settings": {
-            "title": "Title I added",
-            "title_size": "md",
-            "heading_size": "h1"
-          }
-        },
-        "paragraph_eqT8XE": {
-          "type": "paragraph",
-          "settings": {
-            "paragraph": "Lorem Ipsum",
-            "heading_size": "h1"
-          }
-        },
-        "button_6378Qj": {
-          "type": "button",
-          "settings": {
-            "button_label": "Button label",
-            "button_link": ""
-          }
-        }
-      },
-      "block_order": [
-        "heading_P3F63C",
-        "paragraph_eqT8XE",
-        "button_6378Qj"
-      ],
       "settings": {
         "hero_height": "50vh",
+        "image": "shopify:\/\/shop_images\/pink-neon-lights-fashion-model.jpg",
         "color_background": "#000000",
         "opacity": 0.5,
         "info_alignment": "center",
@@ -47,6 +19,14 @@
         "mobile_content_alignment": "left",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "marquee_6GDbDe": {
+      "type": "marquee",
+      "settings": {
+        "sale_text": "20% OFF SALE!",
+        "text_color": "#ffffff",
+        "background_color": "#000000"
       }
     },
     "collection_group_DeBpxF": {
@@ -260,6 +240,7 @@
   },
   "order": [
     "hero_one_HWtFWW",
+    "marquee_6GDbDe",
     "collection_group_DeBpxF",
     "hero_two_RLW7Td",
     "collection_products_single_RkTp7B",
